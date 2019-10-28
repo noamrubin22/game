@@ -10,7 +10,6 @@ class SteppingStone {
     draw() {
         fill("pink");
         stroke(0);
-        // console.log(this.x, this.y);
         rect(this.x, this.y, this.width, this.height);
         this.x -= 4;
     }

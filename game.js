@@ -28,7 +28,7 @@ class Game {
         }
 
         this.steppingstones.forEach((steppingstone) => {
-            console.log("draw steppingstone");
+            // console.log("draw steppingstone");
             steppingstone.draw();
         });
     };
