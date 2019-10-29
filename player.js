@@ -7,7 +7,8 @@ class Player {
 
     preload() {
         // image
-        soundFile = loadSound("assets/beat.mp3");
+        soundFile = loadSound("assets/hismoney.mp3");
+        // soundFile2 = loadSound("assets/beat.mp3");
     };
 
     setup() {
@@ -44,10 +45,14 @@ class Player {
 
         fft.analyze();
         peakDetect.update(fft);
-        console.log(peakDetect);
+        // console.log(peakDetec t);
+        // soundFile.processPeaks(function (tempos) {
+        //     console.log(tempos)
+        // });
+        // console.log(arr);
 
         if (peakDetect.isDetected) {
-            console.log(peakDetect.isDetected)
+            // console.log(peakDetect.isDetected)
 
             // console.log("create new steppingstone");
             game.steppingstones.push(new SteppingStone());
@@ -57,12 +62,6 @@ class Player {
         // if (frameCount % 100 === 0) {
 
         game.steppingstones.forEach((steppingstone, index) => {
-
-            // if (!this.isCollision(steppingstone, this.player)) {
-
-            //     this.x = this.x + ((steppingstone.x - this.x) * this.easing);
-            //     this.y = this.y + ((steppingstone.y - this.y) * this.easing);
-            // }
             // if player touches steppingstone
             if (this.isCollision(steppingstone, this.player)) {
 

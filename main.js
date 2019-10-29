@@ -8,6 +8,7 @@ let canvas;
 let mode;
 let soundFile;
 let peakDetect;
+let soundFile2;
 // let spectralCentroid;
 
 function preload() {
@@ -43,7 +44,7 @@ function keyPressed() {
     if (keyCode === ENTER) {
         mode = 1;
         soundFile.play();
-        soundFile.loop();
+        // soundFile.loop();
         // start audiocontext
         getAudioContext().resume();
     }
