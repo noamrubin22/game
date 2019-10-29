@@ -3,6 +3,7 @@ let mic;
 let fft;
 let neededFreq;
 let spectrum;
+let indeXx;
 // determines whether the game has started
 let mode;
 // let spectralCentroid;
