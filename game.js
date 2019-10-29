@@ -21,15 +21,31 @@ class Game {
         this.player.draw();
 
         // set timing for steppingstones
-        if (frameCount % 220 === 0) {
+        if (frameCount % 100 === 0) {
             console.log("create new steppingstone");
             this.steppingstones.push(new SteppingStone());
-            // console.log(this.steppingstones);
         }
 
-        this.steppingstones.forEach((steppingstone) => {
-            // console.log("draw steppingstone");
+        this.steppingstones.forEach((steppingstone, index) => {
+            // if player touches steppingstone
+            if (this.isCollision(steppingstone, this.player)) {
+                // crash stone into particles
+                // increase score
+                // remove steppingstone
+                this.steppingstones.splice(index, 1);
+            }
             steppingstone.draw();
+
         });
     };
+
+    isCollision(steppingstone, player) {
+        if (player.y + player.height < steppingstone.y || player.y > steppingstone.y + steppingstone.height) {
+            return false;
+        };
+        if (player.x + player.width < steppingstone.x || player.x > steppingstone.x + steppingstone.width) {
+            return false;
+        }
+        return true;
+    }
 }

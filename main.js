@@ -14,10 +14,12 @@ function preload() {
 
 function setup() {
     console.log("setup");
-    // game has not started
+    // game has not started, so mode should be 0
     mode = 0;
-    createCanvas(1200, 1100);
+    let canvas = createCanvas(1200, 1100);
+    canvas.parent("canvas");
     textSize(50);
+
     game.setup();
 }
 
@@ -38,6 +40,9 @@ function draw() {
 function keyPressed() {
     if (keyCode === ENTER) {
         mode = 1;
+
+        // start audiocontext
+        getAudioContext().resume();
     }
 }
 
