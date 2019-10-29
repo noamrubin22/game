@@ -1,24 +1,28 @@
 class Player {
     constructor() {
         this.x = 100;
-        // this.y = 650;
         this.score = 0;
-        this.easing = 0.05;
+        this.easing = 0.0003;
     };
 
     preload() {
         // image
+        soundFile = loadSound("assets/beat.mp3");
     };
 
     setup() {
         this.width = 50;
         this.height = 50;
         this.y = 650;
-        this.x = width / 4
+        this.x = width / 4;
 
         // initialize microphone input
         mic = new p5.AudioIn();
         mic.start();
+
+        // initialize peakdetecter
+        fft = new p5.FFT();
+        peakDetect = new p5.PeakDetect();
     };
 
     draw() {
@@ -28,35 +32,55 @@ class Player {
         stroke(0);
 
         // scale input volume and change y position
-        let audioHeight = map(volume * 2.5, 0, 1, height, 0)
-        this.y = height - (audioHeight / 2)
+        let audioHeight = map(volume * 1.5, 0, 1, height, 0);
+        this.y = height - (audioHeight / 2);
+
+        // adds easing to the player's position
+        this.x = this.x + ((this.width * this.easing));
+        this.y = this.y + ((height - this.y) * this.easing);
+
         // draw player using volume as y position
         rect(this.x, this.y, 50, 50);
 
-        // set timing for steppingstones
-        if (frameCount % 100 === 0) {
-            console.log("create new steppingstone");
+        fft.analyze();
+        peakDetect.update(fft);
+        console.log(peakDetect);
+
+        if (peakDetect.isDetected) {
+            console.log(peakDetect.isDetected)
+
+            // console.log("create new steppingstone");
             game.steppingstones.push(new SteppingStone());
         }
 
+        // // set timing for steppingstones
+        // if (frameCount % 100 === 0) {
+
         game.steppingstones.forEach((steppingstone, index) => {
+
+            // if (!this.isCollision(steppingstone, this.player)) {
+
+            //     this.x = this.x + ((steppingstone.x - this.x) * this.easing);
+            //     this.y = this.y + ((steppingstone.y - this.y) * this.easing);
+            // }
             // if player touches steppingstone
             if (this.isCollision(steppingstone, this.player)) {
-                // crash stone into particles
-                // increase score
 
-                // adds easing to the players position
-                this.x = this.x + ((steppingstone.x - this.x) * this.easing);
-                this.y = this.y + ((steppingstone.y - this.y) * this.easing);
+                // crash stone into particles
 
                 // remove steppingstone
                 game.steppingstones.splice(index, 1);
+
+                // increase score
+                this.score = this.score + 10;
+                document.body.getElementsByTagName("h2")[0].innerText = "SCORE: " + this.score;
+
             };
             steppingstone.draw();
         });
     };
 
-    isCollision(steppingstone, ) {
+    isCollision(steppingstone) {
         if (this.y + this.height < steppingstone.y || this.y > steppingstone.y + steppingstone.height) {
             return false;
         };

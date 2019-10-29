@@ -1,11 +1,13 @@
-// initialize microphone
+// initialize variables
 let mic;
 let fft;
 let neededFreq;
 let spectrum;
 let indeXx;
-// determines whether the game has started
+let canvas;
 let mode;
+let soundFile;
+let peakDetect;
 // let spectralCentroid;
 
 function preload() {
@@ -17,10 +19,9 @@ function setup() {
     console.log("setup");
     // game has not started, so mode should be 0
     mode = 0;
-    let canvas = createCanvas(1200, 1100);
+    canvas = createCanvas(1200, 1100);
     canvas.parent("canvas");
     textSize(50);
-
     game.setup();
 }
 
@@ -41,7 +42,8 @@ function draw() {
 function keyPressed() {
     if (keyCode === ENTER) {
         mode = 1;
-
+        soundFile.play();
+        soundFile.loop();
         // start audiocontext
         getAudioContext().resume();
     }

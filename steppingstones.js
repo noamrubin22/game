@@ -14,8 +14,8 @@ class SteppingStone {
         this.x -= 4;
     }
 
-    removeSteppingStone() {
-        // generative art?
-        // remove();
-    }
+    // removeSteppingStone() {
+    //     // generative art?
+    //     // remove();
+    // }
 }
