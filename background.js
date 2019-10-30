@@ -12,14 +12,44 @@ class Background {
 
     preload() {
         console.log("background preload");
-        this.bgStartScreen = loadImage("assets/background.png");
-        this.bgGround = loadImage("assets/1.png");
-        this.bgButterflies = loadImage("assets/2.png");
-        this.bgTrees = loadImage("assets/3.png");
-        this.bgWeeds = loadImage("assets/4.png");
-        this.bgPurpleWeeds = loadImage("assets/5.png");
-        this.bgPurpleHalf = loadImage("assets/6.png");
-        this.bgPurpleFull = loadImage("assets/7.png");
+        console.log(level);
+        if (level === 1) {
+            this.bgStartScreen = loadImage("assets/level1/background.png");
+            this.bgGround = loadImage("assets/level1/1.png");
+            this.bgButterflies = loadImage("assets/level1/2.png");
+            this.bgTrees = loadImage("assets/level1/3.png");
+            this.bgWeeds = loadImage("assets/level1/4.png");
+            this.bgPurpleWeeds = loadImage("assets/level1/5.png");
+            this.bgPurpleHalf = loadImage("assets/level1/6.png");
+            this.bgPurpleFull = loadImage("assets/level1/7.png");
+        } else if (level === 2) {
+            this.bgStartScreen = loadImage("assets/level2/background.png");
+            this.bgGround = loadImage("assets/level2/1.png");
+            this.bgButterflies = loadImage("assets/level2/2.png");
+            this.bgTrees = loadImage("assets/level2/3.png");
+            this.bgWeeds = loadImage("assets/level2/4.png");
+            this.bgPurpleWeeds = loadImage("assets/level2/5.png");
+            this.bgPurpleHalf = loadImage("assets/level2/6.png");
+            this.bgPurpleFull = loadImage("assets/level2/7.png");
+        } else if (level === 3) {
+            this.bgStartScreen = loadImage("assets/level3/background.png");
+            this.bgGround = loadImage("assets/level3/1.png");
+            this.bgButterflies = loadImage("assets/level3/2.png");
+            this.bgTrees = loadImage("assets/level3/3.png");
+            this.bgWeeds = loadImage("assets/level3/4.png");
+            this.bgPurpleWeeds = loadImage("assets/level3/5.png");
+            this.bgPurpleHalf = loadImage("assets/level3/6.png");
+            this.bgPurpleFull = loadImage("assets/level3/7.png");
+        } else {
+            this.bgStartScreen = loadImage("assets/level4/background.png");
+            this.bgGround = loadImage("assets/level4/1.png");
+            this.bgButterflies = loadImage("assets/level4/2.png");
+            this.bgTrees = loadImage("assets/level4/3.png");
+            this.bgWeeds = loadImage("assets/level4/4.png");
+            this.bgPurpleWeeds = loadImage("assets/level4/5.png");
+            this.bgPurpleHalf = loadImage("assets/level4/6.png");
+            this.bgPurpleFull = loadImage("assets/level4/7.png");
+        }
     }
 
     draw() {

@@ -9,6 +9,8 @@ let mode;
 let soundFile;
 let peakDetect;
 let soundFile2;
+let butterfly;
+let level = 1;
 // let spectralCentroid;
 
 function preload() {
@@ -31,6 +33,7 @@ function draw() {
     // load startscreen
     if (mode == 0) {
         game.background.draw();
+        // level = 0
     };
 
     text("PRESS ENTER TO START", 300, 450)
@@ -43,7 +46,9 @@ function draw() {
 function keyPressed() {
     if (keyCode === ENTER) {
         mode = 1;
-        soundFile.play();
+        level = 1;
+
+        // soundFile.play();
         // soundFile.loop();
         // start audiocontext
         getAudioContext().resume();

@@ -1,7 +1,7 @@
 class SteppingStone {
     constructor() {
         // console.log("steppingstones constructor");
-        this.x = width / 2;
+        this.x = width;
         this.y = height - 450;
         this.width = 50;
         this.height = 50;

@@ -2,12 +2,12 @@ class Player {
     constructor() {
         this.x = 100;
         this.score = 0;
-        this.easing = 0.0003;
+        this.easing = 0.00000003;
     };
 
     preload() {
-        // image
-        soundFile = loadSound("assets/hismoney.mp3");
+        butterfly = loadImage("assets/butterfly.jpg")
+        // soundFile = loadSound("assets/hismoney.mp3");
         // soundFile2 = loadSound("assets/beat.mp3");
     };
 
@@ -27,21 +27,24 @@ class Player {
     };
 
     draw() {
+        // draw player
+
         //use volume as input
         let volume = mic.getLevel();
         fill("purple");
         stroke(0);
 
         // scale input volume and change y position
-        let audioHeight = map(volume * 1.5, 0, 1, height, 0);
-        this.y = height - (audioHeight / 2);
+        let audioHeight = map(volume * 2, 0, 1, height, 0);
+        this.y = height - (audioHeight / 1.5);
 
         // adds easing to the player's position
-        this.x = this.x + ((this.width * this.easing));
+        this.x = this.x + (((height - this.width) * this.easing));
         this.y = this.y + ((height - this.y) * this.easing);
 
         // draw player using volume as y position
-        rect(this.x, this.y, 50, 50);
+        image(butterfly, this.x, this.y, this.width, this.height);
+        // rect(this.x, this.y, 50, 50);
 
         fft.analyze();
         peakDetect.update(fft);
@@ -51,15 +54,52 @@ class Player {
         // });
         // console.log(arr);
 
-        if (peakDetect.isDetected) {
-            // console.log(peakDetect.isDetected)
-
-            // console.log("create new steppingstone");
-            game.steppingstones.push(new SteppingStone());
+        // if (peakDetect.isDetected) {
+        // console.log(peakDetect.isDetected)
+        if (level == 1) {
+            // set timing for steppingstones
+            if ((frameCount % 120 === 0) || (frameCount % 100 === 0)) {
+                // console.log("create new steppingstone");
+                game.steppingstones.push(new SteppingStone());
+                console.log(this.score)
+            }
+            if (this.score == 30) {
+                level = 2;
+                game.background.preload();
+            }
         }
 
-        // // set timing for steppingstones
-        // if (frameCount % 100 === 0) {
+        if (level == 2) {
+            // set timing for steppingstones
+            if (frameCount % 200 === 0) {
+                // reset score
+
+                // console.log("create new steppingstone");
+                game.steppingstones.push(new SteppingStone());
+            }
+            if (this.score == 60) {
+                level = 3
+                game.background.preload();
+            }
+        }
+
+        if (level == 3) {
+            console.log("level 3")
+            // set timing for steppingstones
+            if (frameCount % 40 === 0) {
+                // reset score
+
+                // console.log("create new steppingstone");
+                game.steppingstones.push(new SteppingStone());
+            }
+            if (this.score == 80) {
+                level = 4
+                game.background.preload();
+
+                // }
+            }
+        };
+
 
         game.steppingstones.forEach((steppingstone, index) => {
             // if player touches steppingstone
@@ -71,7 +111,7 @@ class Player {
                 game.steppingstones.splice(index, 1);
 
                 // increase score
-                this.score = this.score + 10;
+                this.score += 10;
                 document.body.getElementsByTagName("h2")[0].innerText = "SCORE: " + this.score;
 
             };
@@ -80,10 +120,10 @@ class Player {
     };
 
     isCollision(steppingstone) {
-        if (this.y + this.height < steppingstone.y || this.y > steppingstone.y + steppingstone.height) {
+        if (this.y + this.height < (steppingstone.y) || this.y > steppingstone.y + steppingstone.height) {
             return false;
         };
-        if (this.x + this.width < steppingstone.x || this.x > steppingstone.x + steppingstone.width) {
+        if (this.x + this.width < (steppingstone.x - 50) || this.x > steppingstone.x + steppingstone.width + 50) {
             return false;
         }
         return true;
