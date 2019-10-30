@@ -2,7 +2,6 @@ class Game {
     constructor() {
         this.background = new Background();
         this.player = new Player();
-        this.messagebox = new MessageBox();
         this.steppingstones = [];
         // treasure
     };
@@ -11,7 +10,6 @@ class Game {
         console.log("game preload");
         this.background.preload();
         this.player.preload();
-        this.messagebox.preload();
     };
 
     setup() {
@@ -22,6 +20,5 @@ class Game {
     draw() {
         this.background.draw();
         this.player.draw();
-        this.messagebox.draw();
     };
 };
