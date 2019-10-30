@@ -1,8 +1,9 @@
 class Player {
     constructor() {
-        this.x = 100;
+        this.x = 0;
         this.score = 0;
-        this.easing = 0.00000003;
+        // this.y = height/2
+        this.easing = 0.12;
     };
 
     preload() {
@@ -36,11 +37,16 @@ class Player {
 
         // scale input volume and change y position
         let audioHeight = map(volume * 2, 0, 1, height, 0);
-        this.y = height - (audioHeight / 1.5);
+
+        // this.y = height - (audioHeight / 1.5);
+        const target = height - (audioHeight / 1.5);
 
         // adds easing to the player's position
-        this.x = this.x + (((height - this.width) * this.easing));
-        this.y = this.y + ((height - this.y) * this.easing);
+        // this.x = this.x + (((this.x) * this.easing));
+
+        // this.y = (((height / 2 + 80) - this.y) * this.easing);
+        this.y = this.y + (target - this.y) * this.easing;
+
 
         // draw player using volume as y position
         image(butterfly, this.x, this.y, this.width, this.height);
@@ -86,7 +92,7 @@ class Player {
         if (level == 3) {
             console.log("level 3")
             // set timing for steppingstones
-            if (frameCount % 40 === 0) {
+            if (frameCount % 100 === 0) {
                 // reset score
 
                 // console.log("create new steppingstone");
@@ -96,9 +102,22 @@ class Player {
                 level = 4
                 game.background.preload();
 
-                // }
             }
-        };
+        }
+
+
+        if (level == 4) {
+            console.log("level 3")
+            // set timing for steppingstones
+            if ((frameCount % 100 === 0) && (frameCount % 20 === 0)) {
+                // reset score
+
+                // console.log("create new steppingstone");
+                game.steppingstones.push(new SteppingStone());
+            }
+
+        }
+
 
 
         game.steppingstones.forEach((steppingstone, index) => {
@@ -119,11 +138,22 @@ class Player {
         });
     };
 
+
+    // isCollision(steppingstone) {
+    //     if (this.y + this.height < (steppingstone.y) || this.y > steppingstone.y + steppingstone.height) {
+    //         return false;
+    //     };
+    //     if (this.x + this.width < (steppingstone.x) || this.x > steppingstone.x + steppingstone.width) {
+    //         return false;
+    //     }
+    //     return true;
+    // };
+
     isCollision(steppingstone) {
         if (this.y + this.height < (steppingstone.y) || this.y > steppingstone.y + steppingstone.height) {
             return false;
         };
-        if (this.x + this.width < (steppingstone.x - 50) || this.x > steppingstone.x + steppingstone.width + 50) {
+        if (this.x + this.width < (steppingstone.x) || this.x > steppingstone.x + steppingstone.width) {
             return false;
         }
         return true;
