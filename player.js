@@ -29,6 +29,11 @@ class Player {
 
     draw() {
         // draw player
+        textSize(28);
+        textFont('Helvetica');
+        text("SCORE: " + this.score, 40, 50);
+        fill(255);
+        text("LEVEL " + level, 40, 80);
 
         //use volume as input
         let volume = mic.getLevel();
@@ -105,7 +110,6 @@ class Player {
             }
         }
 
-
         if (level == 4) {
             console.log("level 3")
             // set timing for steppingstones
@@ -119,10 +123,7 @@ class Player {
                 level = 5;
                 game.background.preload();
             }
-
         }
-
-
 
         game.steppingstones.forEach((steppingstone, index) => {
             // if player touches steppingstone
@@ -135,23 +136,11 @@ class Player {
 
                 // increase score
                 this.score += 10;
-                document.body.getElementsByTagName("h2")[0].innerText = "SCORE: " + this.score;
 
             };
             steppingstone.draw();
         });
     };
-
-
-    // isCollision(steppingstone) {
-    //     if (this.y + this.height < (steppingstone.y) || this.y > steppingstone.y + steppingstone.height) {
-    //         return false;
-    //     };
-    //     if (this.x + this.width < (steppingstone.x) || this.x > steppingstone.x + steppingstone.width) {
-    //         return false;
-    //     }
-    //     return true;
-    // };
 
     isCollision(steppingstone) {
         if (this.y + this.height < (steppingstone.y) || this.y > steppingstone.y + steppingstone.height) {
