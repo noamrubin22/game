@@ -11,6 +11,9 @@ let peakDetect;
 let soundFile2;
 let butterfly;
 let level = 1;
+let butterfly2;
+let butterfly3;
+let why;
 // let spectralCentroid;
 
 function preload() {

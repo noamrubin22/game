@@ -3,13 +3,14 @@ class Game {
         this.background = new Background();
         this.player = new Player();
         this.steppingstones = [];
-        // treasure
+        this.levelchanger = new LevelChanger();
     };
 
     preload() {
         console.log("game preload");
         this.background.preload();
         this.player.preload();
+        // this.steppingstone.preload();
     };
 
     setup() {

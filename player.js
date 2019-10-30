@@ -7,28 +7,37 @@ class Player {
     };
 
     preload() {
-        butterfly = loadImage("assets/butterfly.jpg")
-        // soundFile = loadSound("assets/hismoney.mp3");
+        console.log("player preload");
+        butterfly = loadImage("assets/butterfly1.png")
+        butterfly2 = loadImage("assets/butterfly2.png")
+        butterfly3 = loadImage("assets/butterfly3.png")
+        // soundFile = loadSound("assets/hismoney.mp3")
+        //;
         // soundFile2 = loadSound("assets/beat.mp3");
     };
 
     setup() {
-        this.width = 50;
-        this.height = 50;
+        console.log("player setup")
+        this.width = 80;
+        this.height = 80;
         this.y = 650;
         this.x = width / 4;
 
         // initialize microphone input
         mic = new p5.AudioIn();
         mic.start();
+        // let steppingstone = new Steppingstone(height / 2, 1);
+        // if (level == 2) {
+        // game.background.preload();
+        // }
 
         // initialize peakdetecter
-        fft = new p5.FFT();
-        peakDetect = new p5.PeakDetect();
+        // fft = new p5.FFT();
+        // peakDetect = new p5.PeakDetect();
     };
 
     draw() {
-        // draw player
+        // adjust score and level
         textSize(28);
         textFont('Helvetica');
         text("SCORE: " + this.score, 40, 50);
@@ -37,28 +46,26 @@ class Player {
 
         //use volume as input
         let volume = mic.getLevel();
-        fill("purple");
-        stroke(0);
 
         // scale input volume and change y position
-        let audioHeight = map(volume * 2, 0, 1, height, 0);
-
-        // this.y = height - (audioHeight / 1.5);
-        const target = height - (audioHeight / 1.5);
+        let audioHeight = map(volume * 4, 0, 1, height, 0);
 
         // adds easing to the player's position
-        // this.x = this.x + (((this.x) * this.easing));
-
-        // this.y = (((height / 2 + 80) - this.y) * this.easing);
+        const target = height - (audioHeight / 1.5);
         this.y = this.y + (target - this.y) * this.easing;
 
+        // change butterfly images to make him fly
+        if (frameCount % 5 == 0) {
+            // draw player using volume as y position
+            image(butterfly, this.x, this.y, this.width, this.height);
+        } else {
+            //draw player using volume as y position
+            image(butterfly2, this.x, this.y, this.width, this.height);
+        };
+        // };
 
-        // draw player using volume as y position
-        image(butterfly, this.x, this.y, this.width, this.height);
-        // rect(this.x, this.y, 50, 50);
-
-        fft.analyze();
-        peakDetect.update(fft);
+        // fft.analyze();
+        // peakDetect.update(fft);
         // console.log(peakDetec t);
         // soundFile.processPeaks(function (tempos) {
         //     console.log(tempos)
@@ -69,33 +76,35 @@ class Player {
         // console.log(peakDetect.isDetected)
         if (level == 1) {
             // set timing for steppingstones
-            if ((frameCount % 120 === 0) || (frameCount % 100 === 0)) {
+            if (frameCount % 100 === 0) {
+                why = height / 2;
                 // console.log("create new steppingstone");
-                game.steppingstones.push(new SteppingStone());
-                console.log(this.score)
-            }
-            if (this.score == 50) {
-                level = 2;
-                game.background.preload();
+                game.steppingstones.push(new SteppingStone(why));
+            } else if (frameCount % 120 === 0) {
+                why = height - 280;
+                game.steppingstones.push(new SteppingStone(why));
             }
         }
+        if (this.score == 20) {
+            level = 2;
+            // game.levelchanger.preload()
+        }
+
 
         if (level == 2) {
             // set timing for steppingstones
-            if (frameCount % 200 === 0) {
-                // reset score
+            if ((frameCount % 65 === 0)) {
 
                 // console.log("create new steppingstone");
                 game.steppingstones.push(new SteppingStone());
             }
-            if (this.score == 100) {
+            if (this.score == 200) {
                 level = 3
-                game.background.preload();
+                // game.background.preload();
             }
         }
 
         if (level == 3) {
-            console.log("level 3")
             // set timing for steppingstones
             if (frameCount % 100 === 0) {
                 // reset score
@@ -103,25 +112,24 @@ class Player {
                 // console.log("create new steppingstone");
                 game.steppingstones.push(new SteppingStone());
             }
-            if (this.score == 150) {
+            if (this.score == 300) {
                 level = 4
-                game.background.preload();
+                // game.background.preload();
 
             }
         }
 
         if (level == 4) {
-            console.log("level 3")
             // set timing for steppingstones
-            if ((frameCount % 100 === 0) && (frameCount % 20 === 0)) {
+            if ((frameCount % 100 === 0)) {
                 // reset score
 
                 // console.log("create new steppingstone");
                 game.steppingstones.push(new SteppingStone());
             }
-            if (this.score == 200) {
+            if (this.score == 400) {
                 level = 5;
-                game.background.preload();
+                // game.background.preload();
             }
         }
 
@@ -129,6 +137,7 @@ class Player {
             // if player touches steppingstone
             if (this.isCollision(steppingstone, this.player)) {
 
+                // image(butterfly3, this.x, this.y, this.width, this.height);
                 // crash stone into particles
 
                 // remove steppingstone
@@ -138,7 +147,15 @@ class Player {
                 this.score += 10;
 
             };
+            // steppingstone.preload();
             steppingstone.draw();
+            // if steppingstone leaves the canvas
+            if (steppingstone.x < -steppingstone.width) {
+                // decrease score 
+                this.score -= 10;
+                // and remove from array
+                game.steppingstones.splice(index, 1);
+            }
         });
     };
 
