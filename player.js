@@ -69,7 +69,7 @@ class Player {
                 game.steppingstones.push(new SteppingStone());
                 console.log(this.score)
             }
-            if (this.score == 30) {
+            if (this.score == 50) {
                 level = 2;
                 game.background.preload();
             }
@@ -83,7 +83,7 @@ class Player {
                 // console.log("create new steppingstone");
                 game.steppingstones.push(new SteppingStone());
             }
-            if (this.score == 60) {
+            if (this.score == 100) {
                 level = 3
                 game.background.preload();
             }
@@ -98,7 +98,7 @@ class Player {
                 // console.log("create new steppingstone");
                 game.steppingstones.push(new SteppingStone());
             }
-            if (this.score == 80) {
+            if (this.score == 150) {
                 level = 4
                 game.background.preload();
 
@@ -114,6 +114,10 @@ class Player {
 
                 // console.log("create new steppingstone");
                 game.steppingstones.push(new SteppingStone());
+            }
+            if (this.score == 200) {
+                level = 5;
+                game.background.preload();
             }
 
         }

@@ -40,7 +40,7 @@ class Background {
             this.bgPurpleWeeds = loadImage("assets/level3/5.png");
             this.bgPurpleHalf = loadImage("assets/level3/6.png");
             this.bgPurpleFull = loadImage("assets/level3/7.png");
-        } else {
+        } else if (level === 4) {
             this.bgStartScreen = loadImage("assets/level4/background.png");
             this.bgGround = loadImage("assets/level4/1.png");
             this.bgButterflies = loadImage("assets/level4/2.png");
@@ -49,6 +49,8 @@ class Background {
             this.bgPurpleWeeds = loadImage("assets/level4/5.png");
             this.bgPurpleHalf = loadImage("assets/level4/6.png");
             this.bgPurpleFull = loadImage("assets/level4/7.png");
+        } else {
+            this.bgPurpleFull = loadImage("assets/level4/background.png");
         }
     }
 
@@ -56,8 +58,8 @@ class Background {
         clear();
         // move background
         this.xPurpleFull -= 2;
-        image(this.bgPurpleFull, this.xPurpleFull, 0, width);
-        image(this.bgPurpleFull, this.xPurpleFull + width, 0, width);
+        image(this.bgPurpleFull, this.xPurpleFull, 0, width, height);
+        image(this.bgPurpleFull, this.xPurpleFull + width, 0, width, height);
 
         //make sure background is coming back
         if (this.xPurpleFull <= -width) {
@@ -65,22 +67,22 @@ class Background {
         }
 
         this.xPurpleHalf -= 1.8;
-        image(this.bgPurpleHalf, this.xPurpleHalf, 0, width);
-        image(this.bgPurpleHalf, width + this.xPurpleHalf, 0, width);
+        image(this.bgPurpleHalf, this.xPurpleHalf, 0, width, height);
+        image(this.bgPurpleHalf, width + this.xPurpleHalf, 0, width, height);
         if (this.xPurpleHalf <= -width) {
             this.xPurpleHalf = 0;
         }
 
         this.xPurpleWeeds -= 1.3;
-        image(this.bgPurpleWeeds, this.xPurpleWeeds, 0, width);
-        image(this.bgPurpleWeeds, width + this.xPurpleWeeds, 0, width);
+        image(this.bgPurpleWeeds, this.xPurpleWeeds, 0, width, height);
+        image(this.bgPurpleWeeds, width + this.xPurpleWeeds, 0, width, height);
         if (this.xPurpleWeeds <= -width) {
             this.xPurpleWeeds = 0;
         }
 
         this.xWeeds -= 1.6;
-        image(this.bgWeeds, this.xWeeds, 0, width);
-        image(this.bgWeeds, width + this.xWeeds, 0, width);
+        image(this.bgWeeds, this.xWeeds, 0, width, height);
+        image(this.bgWeeds, width + this.xWeeds, 0, width, height);
         if (this.xWeeds <= -width) {
             this.xWeeds = 0;
         }
@@ -94,15 +96,15 @@ class Background {
         // }
 
         this.xButterflies -= 1.9;
-        image(this.bgButterflies, this.xButterflies, 0, width);
-        image(this.bgButterflies, width + this.xButterflies, 0, width);
+        image(this.bgButterflies, this.xButterflies, 0, width, height);
+        image(this.bgButterflies, width + this.xButterflies, 0, width, height);
         if (this.xButterflies <= -width) {
             this.xButterflies = 0;
         }
 
         this.xGround -= 4;
-        image(this.bgGround, this.xGround, 0, width);
-        image(this.bgGround, width + this.xGround, 0, width);
+        image(this.bgGround, this.xGround, 0, width, height);
+        image(this.bgGround, width + this.xGround, 0, width, height);
         if (this.xGround <= -width) {
             this.xGround = 0;
         }

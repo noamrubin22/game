@@ -22,7 +22,7 @@ function setup() {
     console.log("setup");
     // game has not started, so mode should be 0
     mode = 0;
-    canvas = createCanvas(2100, 1300);
+    canvas = createCanvas(1100, 700);
     canvas.parent("canvas");
     textSize(50);
     game.setup();
