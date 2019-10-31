@@ -17,6 +17,9 @@ let why;
 function preload() {
     console.log("preload");
     game.preload();
+    this.mariposa = loadImage("assets/mariposa.png");
+    this.mariposaX = 0;
+    this.mariposaY = 80;
 }
 
 function setup() {
@@ -25,7 +28,9 @@ function setup() {
     mode = 0;
     canvas = createCanvas(1100, 700);
     canvas.parent("canvas");
-    textSize(50);
+    textSize(33);
+    textFont("Georgia");
+    textStyle(NORMAL);
     game.setup();
 }
 
@@ -35,8 +40,18 @@ function draw() {
     if (mode == 0) {
         game.background.draw();
     };
+    image(this.mariposa, 100, 100);
+    push()
+    fill("white");
+    noStroke();
+    text("press enter to start", this.mariposaX, this.mariposaY, 600, 200)
+    this.mariposaX += 2;
+    translate(text("press enter to start", this.mariposaX, this.mariposaY, 600, 200))
+    pop()
 
-    text("PRESS ENTER TO START", 300, 450)
+    if (this.mariposaX > width) {
+        this.mariposaX = 0;
+    }
     // if enter button is pushed
     if (mode == 1) {
         game.draw();
@@ -93,8 +108,6 @@ function draw() {
                 game.level = 5;
             }
         }
-
-
 
         // CHECK FOR COLISSION , REMOVE & ADD STONE, ADJUST SCORE
         game.steppingstones.forEach((steppingstone, index) => {
