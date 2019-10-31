@@ -4,27 +4,19 @@ class SteppingStone {
         this.x = width;
         this.y = why;
         this.width = 80;
-        this.height = 60;
+        this.height = 80;
+        this.light = loadImage("assets/light.png");
     }
 
     preload() {
         console.log("preload steppingstone")
-        // this.orbOfLight = loadImage("assets/light2.jpg");
         game.background.preload();
     }
 
     draw() {
-        push();
-        noFill()
-        stroke('cyan');
-
-        circle(this.x, this.y, this.width - 20)
-        // image(this.orbOfLight, this.x, this.y, this.width, this.height);
+        image(this.light, this.x, this.y, this.width, this.height);
         this.x -= 4;
-        pop();
     };
-
-    // image(this.orbOfLight, this.x, this.y, this.width, this.height);
 
     isCollision(steppingstone) {
         /* checks if player touches stone */
