@@ -12,6 +12,9 @@ let butterfly;
 let butterfly2;
 let butterfly3;
 let why;
+let volume;
+let target;
+let freq;
 // let spectralCentroid;
 
 function preload() {
@@ -97,15 +100,28 @@ function draw() {
                 game.level = 4
             }
         } else if (game.level == 4) {
+            // activate frequency measurer
+            game.player.voice = 1;
+            // upload background pic
             game.background.assignBackgroundLevel(game.level);
+
             // set timing for steppingstones
-            if ((frameCount % 100 === 0)) {
-                why = height / 3;
-                // console.log("create new steppingstone");
+            if ((frameCount > 700) && (frameCount % 10 === 0) && (frameCount < 800)) {
+                why = 150;
                 game.steppingstones.push(new SteppingStone(why));
-            }
-            if (game.player.score == 400) {
-                game.level = 5;
+            } else if ((frameCount % 100 === 0) && (frameCount % 30 === 0)) {
+                why = height - 200;
+                game.steppingstones.push(new SteppingStone(why));
+            } else if ((frameCount > 1100) && (frameCount % 50 === 0)) {
+                why = height - 150;
+                game.steppingstones.push(new SteppingStone(why))
+            } else if ((frameCount % 66 === 0)) {
+                why = 300;
+                console.log(frameCount);
+                game.steppingstones.push(new SteppingStone(why))
+            } else if (frameCount > 2500) {
+                game.level = "stop";
+                // game.background.assignBackgroundLevel(game.level);
             }
         }
 
@@ -114,12 +130,8 @@ function draw() {
             // if player touches steppingstone
             if (steppingstone.isCollision(steppingstone, game.player)) {
 
-                // image(butterfly3, this.x, this.y, this.width, this.height);
-                // crash stone into particles
-
                 // remove steppingstone when touched
                 game.steppingstones.splice(index, 1);
-                // console.log("colission");
                 // increase score
                 game.player.score += 10;
 
@@ -136,7 +148,6 @@ function draw() {
         });
     };
 };
-
 
 function keyPressed() {
     if (keyCode === ENTER) {

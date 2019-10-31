@@ -3,6 +3,7 @@ class Player {
         this.x = 0;
         this.score = 0;
         this.easing = 0.12;
+        this.voice = 0;
     };
 
     preload() {
@@ -22,16 +23,8 @@ class Player {
         // initialize microphone input
         mic = new p5.AudioIn();
         mic.start();
-
-
-        // let steppingstone = new Steppingstone(height / 2, 1);
-        // if (level == 2) {
-        // game.background.preload();
-        // }
-
-        // initialize peakdetecter
-        // fft = new p5.FFT();
-        // peakDetect = new p5.PeakDetect();
+        fft = new p5.FFT();
+        fft.setInput(mic);
     };
 
     draw() {
@@ -42,31 +35,52 @@ class Player {
         fill(255);
         text("LEVEL " + game.level, 40, 80);
 
-        //use scaled volume as input for y position
-        let volume = mic.getLevel();
-        let audioHeight = map(volume * 4, 0, 1, height, 0);
+        if (this.voice == 0) {
+            //use scaled volume as input for y position
+            let volume = mic.getLevel();
+            let audioHeight = map(volume * 4, 0, 1, height, 0);
 
-        // add easing to the player's position to slow down
-        const target = height - (audioHeight / 1.5);
-        this.y = this.y + (target - this.y) * this.easing;
+            // add easing to the player's position to slow down
+            const target = height - (audioHeight / 1.5);
+            this.y = this.y + (target - this.y) * this.easing;
 
-        // change butterfly images to make him fly
-        if (frameCount % 5 == 0) {
-            // draw player using volume as y position
-            image(butterfly, this.x, this.y, this.width, this.height);
+            // change butterfly images to make him fly
+            if (frameCount % 5 == 0) {
+                // draw player using volume as y position
+                image(butterfly, this.x, this.y, this.width, this.height);
+            } else {
+                //draw player using volume as y position
+                image(butterfly2, this.x, this.y, this.width, this.height);
+            };
+
+            //  enable frequency input when arriving to last level
         } else {
-            //draw player using volume as y position
-            image(butterfly2, this.x, this.y, this.width, this.height);
+            console.log("draw uyv");
+            // clear();
+            volume = mic.getLevel();
+            // store frequency
+            spectrum = fft.analyze();
+
+            let neededLowFreq = fft.getEnergy("bass");
+            let neededHighFreq = fft.getEnergy("highMid");
+
+            this.y = 300;
+
+            if (neededLowFreq > neededHighFreq) {
+                this.y = this.y + (neededLowFreq * 2);
+            } else {
+                this.y = this.y - (neededHighFreq);
+            }
+
+            // change butterfly images to make him fly
+            if (frameCount % 5 == 0) {
+                // draw player using volume as y position
+                image(butterfly, this.x, this.y, this.width, this.height);
+            } else {
+                //draw player using volume as y position
+                image(butterfly2, this.x, this.y, this.width, this.height);
+            };
         };
     };
-    // fft.analyze();
-    // peakDetect.update(fft);
-    // console.log(peakDetec t);
-    // soundFile.processPeaks(function (tempos) {
-    //     console.log(tempos)
-    // });
-    // console.log(arr);
 
-    // if (peakDetect.isDetected) {
-    // console.log(peakDetect.isDetected)
 };
