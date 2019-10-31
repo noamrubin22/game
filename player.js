@@ -75,6 +75,7 @@ class Player {
         // if (peakDetect.isDetected) {
         // console.log(peakDetect.isDetected)
         if (level == 1) {
+            game.background.assignBackgroundLevel(level);
             // set timing for steppingstones
             if (frameCount % 100 === 0) {
                 why = height / 2;
@@ -85,51 +86,50 @@ class Player {
                 game.steppingstones.push(new SteppingStone(why));
             }
         }
+        // change level
         if (this.score == 20) {
             level = 2;
-            // game.levelchanger.preload()
         }
 
 
         if (level == 2) {
+            game.background.assignBackgroundLevel(level);
             // set timing for steppingstones
             if ((frameCount % 65 === 0)) {
-
-                // console.log("create new steppingstone");
-                game.steppingstones.push(new SteppingStone());
+                // create new stone with different height
+                why = height / 2;
+                game.steppingstones.push(new SteppingStone(why));
             }
-            if (this.score == 200) {
+            // change level
+            if (this.score == 40) {
                 level = 3
-                // game.background.preload();
             }
         }
 
         if (level == 3) {
+            game.background.assignBackgroundLevel(level);
             // set timing for steppingstones
-            if (frameCount % 100 === 0) {
-                // reset score
-
-                // console.log("create new steppingstone");
-                game.steppingstones.push(new SteppingStone());
+            if (frameCount % 30 === 0) {
+                // create new stone with different height
+                why = height / 2;
+                game.steppingstones.push(new SteppingStone(why));
             }
-            if (this.score == 300) {
+            // change level
+            if (this.score == 60) {
                 level = 4
-                // game.background.preload();
-
             }
         }
 
         if (level == 4) {
+            game.background.assignBackgroundLevel(level);
             // set timing for steppingstones
             if ((frameCount % 100 === 0)) {
-                // reset score
-
+                why = height / 3;
                 // console.log("create new steppingstone");
-                game.steppingstones.push(new SteppingStone());
+                game.steppingstones.push(new SteppingStone(why));
             }
             if (this.score == 400) {
                 level = 5;
-                // game.background.preload();
             }
         }
 
@@ -142,7 +142,7 @@ class Player {
 
                 // remove steppingstone
                 game.steppingstones.splice(index, 1);
-
+                console.log("colission");
                 // increase score
                 this.score += 10;
 

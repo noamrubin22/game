@@ -6,11 +6,9 @@ let spectrum;
 let indeXx;
 let canvas;
 let mode;
-let soundFile;
 let peakDetect;
 let soundFile2;
 let butterfly;
-let level = 1;
 let butterfly2;
 let butterfly3;
 let why;
@@ -51,8 +49,6 @@ function keyPressed() {
         mode = 1;
         level = 1;
 
-        // soundFile.play();
-        // soundFile.loop();
         // start audiocontext
         getAudioContext().resume();
     }
