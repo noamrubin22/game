@@ -4,21 +4,18 @@ class Game {
         this.player = new Player();
         this.steppingstones = [];
         this.level = 1;
-        this.levelchanger = new LevelChanger();
+        // this.levelchanger = new LevelChanger();
     };
 
     preload() {
         console.log("game preload");
         this.background.preload();
         this.player.preload();
-        console.log(this.level)
-        // this.steppingstone.preload();
     };
 
     setup() {
         this.background.assignBackgroundLevel(this.level)
         this.player.setup();
-        // this.messagebox.setup();
     };
 
     draw() {

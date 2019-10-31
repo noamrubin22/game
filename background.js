@@ -10,7 +10,6 @@ class Background {
         this.xPurpleFull = 0;
     }
 
-
     preload() {
         console.log("background preload");
         // level 1
@@ -54,11 +53,8 @@ class Background {
     }
 
     draw() {
-        // console.log(this.bgFull)
         clear();
         // move background
-        // this.assignBackgroundLevel(level)
-        // console.log(this.bgPurpleFull)
         this.xPurpleFull -= 1.0;
         image(this.bgPurpleFull, this.xPurpleFull, 0, width, height);
         image(this.bgPurpleFull, this.xPurpleFull + width, 0, width, height);
@@ -113,8 +109,7 @@ class Background {
     }
 
     assignBackgroundLevel(level) {
-        // console.log(' AAAAAAAH ', this.img2)
-
+        /* changes background variables based on level */
         if (level === 1) {
             this.bgGround = this.img1
             this.bgButterflies = this.img2
@@ -138,7 +133,6 @@ class Background {
             this.bgPurpleWeeds = this.img25
             this.bgPurpleHalf = this.img26
             this.bgPurpleFull = this.img27;
-            console.log(' AAAAAAAH ', this.img27)
         } else if (level === 4) {
             this.bgGround = this.img31;
             this.bgButterflies = this.img32;
