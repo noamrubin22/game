@@ -4,7 +4,6 @@ class Game {
         this.player = new Player();
         this.steppingstones = [];
         this.level = 1;
-        // this.levelchanger = new LevelChanger();
     };
 
     preload() {

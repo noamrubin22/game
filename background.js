@@ -85,13 +85,12 @@ class Background {
             this.xWeeds = 0;
         }
 
-        // // for purpl
-        // this.xTrees -= 1;
-        // image(this.bgTrees, this.xTrees, 0, width);
-        // image(this.bgTrees, width + this.xTrees, 0, width);
-        // if (this.xTrees <= -width) {
-        //     this.xTrees = 0;
-        // }
+        this.xTrees -= 2.2;
+        image(this.bgTrees, this.xTrees, 0, width);
+        image(this.bgTrees, width + this.xTrees, 0, width);
+        if (this.xTrees <= -width) {
+            this.xTrees = 0;
+        }
 
         this.xButterflies -= 2.4;
         image(this.bgButterflies, this.xButterflies, 0, width, height);
@@ -129,6 +128,7 @@ class Background {
         } else if (level === 3) {
             this.bgGround = this.img21
             this.bgButterflies = this.img22
+            this.bgTrees = this.img23
             this.bgWeeds = this.img24
             this.bgPurpleWeeds = this.img25
             this.bgPurpleHalf = this.img26
@@ -142,5 +142,6 @@ class Background {
             this.bgPurpleHalf = this.img36;
             this.bgPurpleFull = this.img37;
         }
+
     }
 }

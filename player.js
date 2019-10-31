@@ -34,6 +34,11 @@ class Player {
         text("SCORE: " + this.score, 40, 50);
         fill(255);
         text("LEVEL " + game.level, 40, 80);
+        if (game.level == "YOU ARE DONE!") {
+            text("SCORE: " + this.score, 40, 50);
+            fill(255);
+            text("LEVEL " + game.level, 40, 80);
+        }
 
         if (this.voice == 0) {
             //use scaled volume as input for y position
@@ -55,7 +60,6 @@ class Player {
 
             //  enable frequency input when arriving to last level
         } else {
-            console.log("draw uyv");
             // clear();
             volume = mic.getLevel();
             // store frequency
@@ -67,9 +71,9 @@ class Player {
             this.y = 300;
 
             if (neededLowFreq > neededHighFreq) {
-                this.y = this.y + (neededLowFreq * 2);
+                this.y = this.y + (neededLowFreq * 4);
             } else {
-                this.y = this.y - (neededHighFreq);
+                this.y = this.y - (neededHighFreq * 3);
             }
 
             // change butterfly images to make him fly
