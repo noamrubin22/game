@@ -46,7 +46,6 @@ function draw() {
     this.textX += 2;
     translate(text("press enter to start", this.textX, this.textY, 600, 200))
 
-
     if (this.textX > width) {
         this.textX = 0;
     }
@@ -71,7 +70,6 @@ function draw() {
                 game.level = 2;
             }
         } else if (game.level == 2) {
-            console.log(frameCount);
             game.background.assignBackgroundLevel(game.level);
             // set timing for steppingstones
             if ((frameCount % 120 === 0) && (frameCount % 150 === 0)) {
