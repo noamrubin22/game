@@ -49,6 +49,11 @@ class Player {
             const target = height - (audioHeight / 1.5);
             this.y = this.y + (target - this.y) * this.easing;
 
+            // make sure butterfly won't leave canvas
+            if (this.y > height) {
+                this.y = height - 100;
+            }
+
             // change butterfly images to make him fly
             if (frameCount % 5 == 0) {
                 // draw player using volume as y position
@@ -74,6 +79,15 @@ class Player {
                 this.y = this.y + (neededLowFreq * 4);
             } else {
                 this.y = this.y - (neededHighFreq * 3);
+            }
+
+            // make sure butterfly won't leave canvas
+            if (this.y > height) {
+                this.y = height - 100;
+            }
+
+            if (this.y < 0) {
+                this.y = 100;
             }
 
             // change butterfly images to make him fly

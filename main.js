@@ -121,7 +121,7 @@ function draw() {
                 why = 300;
                 // console.log(frameCount);
                 game.steppingstones.push(new SteppingStone(why))
-            } else if (frameCount > 3000) {
+            } else if (frameCount > 4000) {
                 text(`time is up! your score is: ${game.player.score}`, 350, 350, 500, 500);
             }
         }
