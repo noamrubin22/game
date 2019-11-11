@@ -13,6 +13,7 @@ class Game {
     };
 
     setup() {
+        console.log("game setup")
         this.background.assignBackgroundLevel(this.level)
         this.player.setup();
     };
