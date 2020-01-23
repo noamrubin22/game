@@ -1,6 +1,6 @@
 # Mariposa
 
-This game was my first project for the Ironhack bootcamp. It is a 'fly and jump'-game created with p5.js. The goal is to catch as many lightorbs as possible. An extra fun-aspect is added by using the p5 sound-library.
+This game was my first project for the Ironhack bootcamp. It is a 'fly and jump'-game made with p5.js. The goal is to catch as many lightorbs as possible. An extra fun-aspect is added by using the p5 sound-library.
 
 ## Instructions
 
