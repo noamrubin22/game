@@ -8,3 +8,12 @@ The butterfly is controlled by the use of sound. In the first 3 levels it respon
 
 Have a look on this page to play it, and enjoy!
 https://noamrubin22.github.io/game/ 
+
+## Acknowledgments
+
+- Ironhack Berlin
+- Montasar Jarraya (our teacher)
+- Pierre Portal (TA)
+- André de Albuquerque (TA)
+- Dalina Weidinger (TA)
+- Svenja Maria Katharina Weiler (TA)
