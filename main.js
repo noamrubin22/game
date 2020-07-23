@@ -25,14 +25,7 @@ function preload() {
 
 function setup() {
   console.log("setup");
-  // game has not started, so mode should be 0
   canvas = createCanvas(1050, 650);
-  // mode = 0;
-  // canvas.parent("canvas");
-  // textSize(22);
-  // textFont("Georgia");
-  // textStyle(NORMAL);
-  // game.setup();
   resetSketch();
   loop();
 }
@@ -149,11 +142,7 @@ function draw() {
       ) {
         why = 200;
         game.steppingstones.push(new SteppingStone(why));
-      } else if (
-        frameCount % 100 ===
-        0
-        // frameCount < currentFrameCount + 2000
-      ) {
+      } else if (frameCount % 100 === 0) {
         why = height - 200;
         game.steppingstones.push(new SteppingStone(why));
       } else if (frameCount % 60 === 0) {
@@ -170,8 +159,6 @@ function draw() {
       if (game.player.score > 1000 || game.level == 5) {
         // go to win screen, show score and level
         mode = 3;
-        // game.background.assignBackgroundLevel(1);
-
         fill(color(500, 150));
         rect(width / 4, 50, height - 80, 350, 50);
         push();
@@ -193,7 +180,6 @@ function draw() {
         // remove last steppingstones
         game.steppingstones.forEach((steppingstone, index) => {
           game.steppingstones.splice(index, game.steppingstones.length);
-          // noLoop();
         });
       }
     }
@@ -205,7 +191,6 @@ function draw() {
         game.steppingstones.splice(index, 1);
         // increase score
         game.player.score += 10;
-
         // increase timer
         timer += 1;
       }
@@ -243,10 +228,6 @@ function draw() {
           game.steppingstones.forEach((steppingstone, index) => {
             game.steppingstones.splice(index, game.steppingstones.length);
           });
-          // // stop game
-          // if (mode === 3) {
-          //   // noLoop();
-          // }
         }
       }
     });
@@ -269,13 +250,10 @@ function keyPressed() {
     resetSketch();
     console.log("mode after keypress", mode);
   } else if (keyCode === ENTER) {
-    // loop();
     mode = 1;
     level = 1;
     game.player.score = 0;
     console.log("keypressed");
-    // game.setup();
-    // loop();
     // start audiocontext
     getAudioContext().resume();
   }
@@ -284,7 +262,6 @@ function keyPressed() {
 function resetSketch() {
   mode = 0;
   timer = 30;
-  // level = 1;
   canvas.parent("canvas");
   game.background.assignBackgroundLevel(1);
   textSize(22);

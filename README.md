@@ -4,10 +4,10 @@ This game was my first project for the Ironhack bootcamp. It is a 'fly and jump'
 
 ## Instructions
 
-The butterfly is controlled by the use of sound. In the first 3 levels it responds on volume and in the last level on frequency. Each time a lightorb is collected, the player is given more time.
+The butterfly is controlled by the use of sound. A high frequency tone will move the butterfly upwards, and a low frequency tone will move it downwards. Each time a lightorb is collected, the player is given more time and the score is increased.
 
 Have a look on this page to play it, and enjoy!
-https://noamrubin22.github.io/game/ 
+https://noamrubin22.github.io/game/
 
 ## Acknowledgments
 
