@@ -37,14 +37,16 @@ function draw() {
     fill(color(500, 150));
 
     let instructions =
-      "Catch as many light orbs as you can within the given time. The butterfly responds to frequency: clip your fingers or use a high voice to move it up and use a low voice to bring it down. Catching a light orb will increase your play-time. Make sure you are in a quite environment.";
+      `! use your voice !\n\nhigh frequency = up\n\nlow frequency = down`;
     rect(width / 4, 50, height - 80, 350, 50);
     push();
     fill(color(255, 202));
     stroke("#222222");
+    textSize(30);
     strokeWeight(4.5);
+    textAlign(CENTER);
     text(instructions, 300, 100, 510, 300);
-    text("Press enter to start, and enjoy!", 400, 300, 510, 400);
+    text("Press enter to start, and enjoy!", 300, 350, 510, 400);
     pop();
   }
   // if enter button is pushed
